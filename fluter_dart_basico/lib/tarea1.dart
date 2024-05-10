@@ -1,3 +1,10 @@
+/*
+
+Elaborar una clase abstracta operación con los métodos suma, resta y multiplicación. 
+Luego, implementar en una clase derivada.
+
+*/
+
 abstract class Operacion {
   double suma(double a, double b);
   double resta(double a, double b);
