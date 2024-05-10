@@ -9,6 +9,7 @@ abstract class Operacion {
   double suma(double a, double b);
   double resta(double a, double b);
   double multiplicacion(double a, double b);
+  double division(double a, double b);
 }
 
 class Calculadora extends Operacion {
@@ -26,17 +27,22 @@ class Calculadora extends Operacion {
   double multiplicacion(double a, double b) {
     return a * b;
   }
+
+  @override
+  double division(double a, double b) {
+    return a / b;
+  }
 }
 
-void ejemploDeAbstract() {
+void TareaAbstract() {
   Calculadora calculadora = Calculadora();
 
-  double resultadoSuma = calculadora.suma(5, 3);
-  print('Suma: $resultadoSuma'); // Output: Suma: 8.0
-  
-  double resultadoResta = calculadora.resta(5, 3);
-  print('Resta: $resultadoResta'); // Output: Resta: 2.0
-  
-  double resultadoMultiplicacion = calculadora.multiplicacion(5, 3);
-  print('Multiplicación: $resultadoMultiplicacion'); // Output: Multiplicación: 15.0
+  double resultadoSuma = calculadora.suma(8, 5);
+  print('Suma: $resultadoSuma');
+
+  double resultadoResta = calculadora.resta(8, 5);
+  print('Resta: $resultadoResta');
+
+  double resultadoMultiplicacion = calculadora.multiplicacion(8, 5);
+  print('Multiplicación: $resultadoMultiplicacion');
 }

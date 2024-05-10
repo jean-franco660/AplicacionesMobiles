@@ -34,7 +34,7 @@ class Calculadora extends Operacion {
   }
 }
 
-void main() {
+void TareaDerivada() {
   Calculadora calculadora = Calculadora();
 
   double resultadoSuma = calculadora.suma(5, 3);
