@@ -97,15 +97,41 @@ class _CalcAppState extends State<CalcApp> {
   }
 
   void powOperacion(String text) {
-    setState(() {
-
-      num num1 = num.tryParse(_controller.text) ?? 0;
-
-      num num2 = num.tryParse(_controller.text) ?? 0;
-
-      _controller.text = pow(num1, num2).toString();
-    });
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Potencia a cualquier número'),
+          content: TextField(
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(labelText: 'Ingrese el exponente'),
+            onChanged: (value) {
+              // Aquí podrías validar y almacenar el valor del exponente
+            },
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancelar'),
+            ),
+            TextButton(
+              onPressed: () {
+                double base = double.tryParse(_controller.text) ?? 0;
+                double exponente = double.tryParse(value) ?? 0;
+                double resultado = pow(base, exponente);
+                _controller.text = resultado.toString();
+                Navigator.of(context).pop();
+              },
+              child: Text('Calcular'),
+            ),
+          ],
+        );
+      },
+    );
   }
+
   @override
   Widget build(BuildContext context) {
     List<List> labelList = [
@@ -169,3 +195,4 @@ class _CalcAppState extends State<CalcApp> {
     );
   }
 }
+
