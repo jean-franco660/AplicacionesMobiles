@@ -2,6 +2,7 @@ import 'dart:math'; // Importar para tener acceso a las funciones matemáticas
 
 import 'package:calc_upeux/comp/CalcButton.dart';
 import 'package:calc_upeux/comp/CustomAppBarX.dart';
+import 'package:calc_upeux/comp/CustomAppBar.dart';
 import 'package:calc_upeux/theme/AppTheme.dart';
 import 'package:flutter/material.dart';
 
@@ -125,49 +126,54 @@ class _CalcAppState extends State<CalcApp> {
       [sqrtOperacion, piOperacion, pow2Operacion, powOperacion]
     ];
 
-    AppTheme.colorX = Colors.blue;
+
+    AppTheme.colorX=Colors.blue;
     return MaterialApp(
+      restorationScopeId: 'app',
       debugShowCheckedModeBanner: false,
       title: 'Calculator',
       themeMode: AppTheme.useLightMode ? ThemeMode.light : ThemeMode.dark,
       theme: AppTheme.themeDataLight,//Fin Agregado
       darkTheme: AppTheme.themeDataDark,
       home: Scaffold(
-        appBar: CustomAppBar(accionx: accion),
+        appBar: CustomAppBarX(accionx: accion as Function),
         body: SingleChildScrollView(
           padding: EdgeInsets.all(20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Card(
+/*color:
+Theme.of(context).colorScheme.surfaceVariant,*/
                 margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
                 child: TextField(
                   textAlign: TextAlign.end,
                   controller: _controller,
                 ),
               ),
+//aqui codigo
               SizedBox(height: 20),
-              ...List.generate(
-                labelList.length,
-                (index) => Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    ...List.generate(
-                      labelList[index].length,
-                      (indexx) => CalcButton(
-                        text: labelList[index][indexx],
-                        callback: funx[index][indexx],
+              ...List.generate(labelList.length, (index) =>
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      ...List.generate(
+                        labelList[index].length,
+                            (indexx) => CalcButton(
+                          text: labelList[index][indexx],
+                          callback: funx[index][indexx] as Function,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              )
+                    ],
+                  )
+              ),
+
             ],
           ),
         ),
       ),
     );
   }
-}
 
+}

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class MaterialScheme {
@@ -178,4 +177,3 @@ class ColorFamily {
   final Color colorContainer;
   final Color onColorContainer;
 }
-
